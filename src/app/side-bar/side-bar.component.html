@@ -1,0 +1,159 @@
+<!-- Sidebar  -->
+<nav id="sidebar" style="z-index: 1;">
+  <div class="sidebar-header">
+    <a class="navbar-brand text-primary" href="Index.html"><img src="assets/img/Videtur_Logo.png" alt="Videtur" /></a>
+  </div>
+  <div *ngIf="(userModel | json) != '{}'">
+    <!-- <div class="container-fluid"> -->
+    <ul class="list-unstyled">
+      <li><a class="link-light" [routerLink]="['']" [routerLinkActive]="['link-active']"><i
+            class="fa fa-tachometer"></i>
+          Dashboard</a></li>
+      <li class="border-top"></li>
+      <li class="mb-1">
+        <button class="btn btn-toggle navbar-btn align-items-center text-light collapsed"
+          data-bs-target="#Appearance-collapse" aria-expanded="false" [routerLink]="['/appearances/appearance-list']"
+          [routerLinkActive]="['link-active']">
+          <i class="fa fa-book"></i> Appearance
+        </button>
+        <!-- <div class="collapse" id="Appearance-collapse">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a class="link-light" [routerLink]="['/appearances/appearance-list']"
+              [routerLinkActive]="['link-active']">Appearances</a></li>
+
+        </ul>
+      </div> -->
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle navbar-btn align-items-center text-light collapsed"
+          data-bs-target="#Appearance-collapse" aria-expanded="false"
+          [routerLink]="['/appearances/appearance-invoices-list']" [routerLinkActive]="['link-active']">
+          <i class="fa fa-book"></i> Appearance Invoice
+        </button>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle navbar-btn align-items-center text-light collapsed"
+          data-bs-target="#Appearance-collapse" aria-expanded="false" [routerLink]="['/invoice/invoice-receipt-list']"
+          [routerLinkActive]="['link-active']">
+          <i class="fa fa-book"></i> Appearance Invoice Receipt
+        </button>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle navbar-btn align-items-center text-light collapsed"
+          data-bs-target="#User-collapse" aria-expanded="false" [routerLink]="['/users/user-list']"
+          [routerLinkActive]="['link-active']">
+          <i class="fa fa-book"></i> Videture Users
+        </button>
+        <!-- <div class="collapse" id="User-collapse">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a class="link-light" [routerLink]="['/users/user-list']" [routerLinkActive]="['link-active']">Users</a>
+          </li>
+
+        </ul>
+      </div> -->
+      </li>
+
+      <li class="mb-1">
+        <button class="btn btn-toggle navbar-btn align-items-center text-light collapsed" data-bs-toggle="collapse"
+          data-bs-target="#master-collapse" aria-expanded="false">
+          <i class="fa fa-book"></i> Masters
+        </button>
+        <div class="collapse" id="master-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a class="link-light" [routerLink]="['/masters/countries/country-list']"
+                [routerLinkActive]="['link-active']">Countries</a></li>
+            <li><a class="link-light" [routerLink]="['/masters/states/state-list']"
+                [routerLinkActive]="['link-active']">States</a></li>
+            <li><a class="link-light" [routerLink]="['/masters/counties/county-list']"
+                [routerLinkActive]="['link-active']">Counties</a></li>
+            <li><a class="link-light" [routerLink]="['/masters/cities/city-list']"
+                [routerLinkActive]="['link-active']">Cities</a></li>
+            <li><a class="link-light" [routerLink]="['/masters/otherMaster/other-master-list']"
+                [routerLinkActive]="['link-active']">Other Master</a>
+            </li>
+            <li><a class="link-light" [routerLink]="['/masters/courts/court-list']"
+                [routerLinkActive]="['link-active']">Courts</a>
+            </li>
+            <li><a class="link-light" [routerLink]="['/masters/notification/notification-list']"
+                [routerLinkActive]="['link-active']">Notification</a>
+            </li>
+            <li><a class="link-light" [routerLink]="['/masters/casetypepracticearea/case-type-practice-area-list']"
+                [routerLinkActive]="['link-active']">Case Type Practice Area</a>
+            </li>
+            <li><a class="link-light" [routerLink]="['/masters/appearancetype/appearance-type-list']"
+                [routerLinkActive]="['link-active']">Appearance Type</a>
+            </li>
+            <li><a class="link-light" [routerLink]="['/masters/latepaymentcharges/late-payment-charges-list']"
+                [routerLinkActive]="['link-active']">Late Payment Charges</a>
+            </li>
+            <li><a class="link-light" [routerLink]="['/masters/planpricing/plan-pricing-list']"
+                [routerLinkActive]="['link-active']">Plan Pricing</a>
+            </li>
+            <li><a class="link-light" [routerLink]="['/masters/paymentmethod/payment-method-list']"
+                [routerLinkActive]="['link-active']">Payment Method</a>
+            </li>
+            <li><a class="link-light" [routerLink]="['/masters/module-action-list']"
+                [routerLinkActive]="['link-active']">Module Action</a>
+            </li>
+            <li><a class="link-light" [routerLink]="['/masters/module-master-list']"
+                [routerLinkActive]="['link-active']">Module Master</a>
+            </li>
+            <li><a class="link-light" [routerLink]="['/masters/admin-user-role-permission-list']"
+                [routerLinkActive]="['link-active']">User Role Permission</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="mb-1">
+        <button class="btn btn-toggle navbar-btn align-items-center text-light collapsed" data-bs-toggle="collapse"
+          data-bs-target="#admin-user-collapse" aria-expanded="false" [routerLink]="['/users/invoice-list']"
+          [routerLinkActive]="['link-active']">
+          <i class="fa fa-book"></i> Manage Invoice
+        </button>
+        <div class="collapse" id="admin-user-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <!-- <li><a class="link-light" [routerLink]="['/masters/countries/country-list']"
+              [routerLinkActive]="['link-active']">Countries</a></li>
+          <li><a class="link-light" [routerLink]="['/masters/states/state-list']"
+              [routerLinkActive]="['link-active']">States</a></li> -->
+
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle navbar-btn align-items-center text-light collapsed" data-bs-toggle="collapse"
+          data-bs-target="#admin-user-collapse" aria-expanded="false" [routerLink]="['/users/admin-user-list']"
+          [routerLinkActive]="['link-active']">
+          <i class="fa fa-book"></i> Manage Admin User
+        </button>
+        <div class="collapse" id="admin-user-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <!-- <li><a class="link-light" [routerLink]="['/masters/countries/country-list']"
+                    [routerLinkActive]="['link-active']">Countries</a></li>
+                <li><a class="link-light" [routerLink]="['/masters/states/state-list']"
+                    [routerLinkActive]="['link-active']">States</a></li> -->
+
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle navbar-btn align-items-center text-light collapsed" data-bs-toggle="collapse"
+          data-bs-target="#admin-user-collapse" aria-expanded="false" [routerLink]="['/admin/user-role-list']"
+          [routerLinkActive]="['link-active']">
+          <i class="fa fa-book"></i> Manage Admin User Role
+        </button>
+        <div class="collapse" id="admin-user-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <!-- <li><a class="link-light" [routerLink]="['/masters/countries/country-list']"
+                          [routerLinkActive]="['link-active']">Countries</a></li>
+                      <li><a class="link-light" [routerLink]="['/masters/states/state-list']"
+                          [routerLinkActive]="['link-active']">States</a></li> -->
+
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!-- </div> -->
+</nav>

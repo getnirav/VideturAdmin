@@ -1,0 +1,44 @@
+<form [formGroup]="vForm" (ngSubmit)="SaveData()">
+  <div class="card m-1">
+    <div class="card-header">
+      <h3 class="text-center">State Master</h3>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label class="form-label">Country Code</label>
+        <!-- <input type="text" class="form-control" id="countryCode" formControlName="countryCode"
+          oninput="this.value = this.value.toUpperCase()"> -->
+        <select class="form-select" formControlName="countryCode">
+          <option disabled>Select Country</option>
+          <option [ngValue]="Country.countryCode" *ngFor="let Country of countries">{{Country.countryName}}</option>
+        </select>
+        <div *ngIf="f.countryCode.touched && f.countryCode.invalid && submitted" class="alert alert-danger">
+          <div *ngIf="f.countryCode.errors">Please select country.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">State Code</label>
+        <input type="text" class="form-control" id="stateCode" formControlName="stateCode"
+          oninput="this.value = this.value.toUpperCase()">
+        <div *ngIf="f.stateCode.touched && f.stateCode.invalid" class="alert alert-danger">
+          <div *ngIf="f.stateCode.errors">Please enter state code.</div>
+        </div>
+
+
+      </div>
+      <div class=" form-group">
+        <label class="form-label">State Name</label>
+        <input type="text" class="form-control" id="stateName" formControlName="stateName">
+
+        <div *ngIf="f.stateName.touched && f.stateName.invalid" class="alert alert-danger">
+          <div *ngIf="f.stateName.errors">Please enter state name.</div>
+        </div>
+
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit" [disabled]="!vForm.valid">Save</button>&nbsp;
+        <button class=" btn btn-primary" (click)="activeModal.dismiss('Cross click')">Close</button>
+      </div>
+    </div>
+  </div>
+</form>

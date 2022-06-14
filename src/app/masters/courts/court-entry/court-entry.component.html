@@ -1,0 +1,98 @@
+<form [formGroup]="vForm" (ngSubmit)="SaveData()">
+  <div class="card m-1">
+    <div class="card-header">
+      <h3 class="text-center">Court Master</h3>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label class="form-label">Court Type</label>
+        <select class="form-select" formControlName="courtTypeId">
+          <option disabled>Select Court Type</option>
+          <option [ngValue]="type.autoId" *ngFor="let type of courtTypes">{{type.recordName}}</option>
+        </select>
+        <div *ngIf="f.courtTypeId.touched && f.courtTypeId.invalid && submitted" class="alert alert-danger">
+          <div *ngIf="f.courtTypeId.errors">Please select court type.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Court Name</label>
+        <input type="text" class="form-control" id="courtName" formControlName="courtName">
+        <div *ngIf="f.courtName.touched && f.courtName.invalid" class="alert alert-danger">
+          <div *ngIf="f.courtName.errors">Please enter court name.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Country</label>
+        <select class="form-select" formControlName="countryCode" (change)="onChangeCountry()">
+          <option disabled>Select Country</option>
+          <option [ngValue]="country.countryCode" *ngFor="let country of countries">{{country.countryName}}</option>
+        </select>
+        <div *ngIf="f.countryCode.touched && f.countryCode.invalid && submitted" class="alert alert-danger">
+          <div *ngIf="f.countryCode.errors">Please select country.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">State</label>
+            <select class="form-select" formControlName="stateMasterId" (change)="onChangeState()">
+              <option disabled>Select State</option>
+              <option [ngValue]="state.autoId" *ngFor="let state of states">{{state.stateName}}</option>
+            </select>
+            <div *ngIf="f.stateMasterId.touched && f.stateMasterId.invalid && submitted" class="alert alert-danger">
+              <div *ngIf="f.stateMasterId.errors">Please select state.</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">County</label>
+            <select class="form-select" formControlName="countyMasterId" (change)="onChangeCounty()">
+              <option disabled>Select County</option>
+              <option [ngValue]="county.autoId" *ngFor="let county of counties">{{county.countyName}}</option>
+            </select>
+            <div *ngIf="f.countyMasterId.touched && f.countyMasterId.invalid && submitted" class="alert alert-danger">
+              <div *ngIf="f.countyMasterId.errors">Please select county.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">City</label>
+            <select class="form-select" formControlName="cityMasterId">
+              <option value="0">Select City</option>
+              <option [ngValue]="city.autoId" *ngFor="let city of cities">{{city.cityName}}</option>
+            </select>
+            <!-- <div *ngIf="f.cityMasterId.touched && f.cityMasterId.invalid && submitted" class="alert alert-danger">
+                <div *ngIf="f.cityMasterId.errors">Please select city.</div>
+              </div> -->
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">Zip Code</label>
+            <input type="text" class="form-control" id="zipCode" formControlName="zipCode">
+            <div *ngIf="f.zipCode.touched && f.zipCode.invalid" class="alert alert-danger">
+              <div *ngIf="f.zipCode.errors">Please enter zip code.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Google Map</label>
+        <input type="text" class="form-control" id="googleMapUrl" formControlName="googleMapUrl">
+        <!-- <div *ngIf="f.googleMapUrl.touched && f.googleMapUrl.invalid" class="alert alert-danger">
+          <div *ngIf="f.googleMapUrl.errors">Please enter google map.</div>
+        </div> -->
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit" [disabled]="!vForm.valid">Save</button>&nbsp;
+        <button class=" btn btn-primary" (click)="activeModal.dismiss('Cross click')">Close</button>
+      </div>
+    </div>
+  </div>
+</form>

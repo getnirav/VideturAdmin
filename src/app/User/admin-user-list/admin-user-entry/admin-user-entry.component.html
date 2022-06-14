@@ -1,0 +1,76 @@
+<form [formGroup]="vForm" (ngSubmit)="SaveData()">
+    <div class="card m-1">
+        <div class="card-header">
+            <h3 class="text-center">Admin User</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    <div class=" form-group">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" formControlName="firstName">
+                        <div *ngIf="f.firstName.touched && f.firstName.invalid" class="alert alert-danger">
+                            <div *ngIf="f.firstName.errors">Please enter first name.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class=" form-group">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" formControlName="lastName">
+                        <div *ngIf="f.lastName.touched && f.lastName.invalid" class="alert alert-danger">
+                            <div *ngIf="f.lastName.errors">Please enter last name.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Role</label>
+                <select class="form-select" formControlName="adminUserRoleName">
+                    <option disabled>Select Role</option>
+                    <option [ngValue]="role.adminUserRoleName" *ngFor="let role of adminUserRoles">
+                        {{role.adminUserRoleName}}
+                    </option>
+                </select>
+                <div *ngIf="f.adminUserRoleName.touched && f.adminUserRoleName.invalid && submitted"
+                    class="alert alert-danger">
+                    <div *ngIf="f.adminUserRoleName.errors">Please select role.</div>
+                </div>
+            </div>
+            <div *ngIf="autoId == 0">
+                <div class=" form-group">
+                    <label class="form-label">Login Id</label>
+                    <input type="email" class="form-control" id="loginId" formControlName="loginId"
+                        autocomplete="new-email">
+                    <div *ngIf="f.loginId.touched && f.loginId.invalid" class="alert alert-danger">
+                        <div *ngIf="f.loginId.errors">Please enter login id.</div>
+                    </div>
+                </div>
+                <div class=" form-group">
+                    <label class="form-label">New Password</label>
+                    <input type="password" class="form-control" id="newPassword" formControlName="newPassword"
+                        autocomplete="new-password" (focusout)="onFocusOutEvent($event)">
+                    <div *ngIf="f.newPassword.touched && f.newPassword.invalid" class="alert alert-danger">
+                        <div *ngIf="f.newPassword.errors">Please enter new password.</div>
+                    </div>
+
+                </div>
+                <div class=" form-group">
+                    <label class="form-label">Confirm New Password</label>
+                    <input type="password" class="form-control" id="confirmNewPassword"
+                        formControlName="confirmNewPassword">
+                    <div *ngIf="f.confirmNewPassword.touched && f.confirmNewPassword.invalid"
+                        class="alert alert-danger">
+                        <div *ngIf="f.confirmNewPassword.errors">Confirm new password not matched.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button *ngIf="autoId == 0" class="btn btn-primary" type="submit"
+                    [disabled]="!vForm.valid">Save</button>
+                <button *ngIf="autoId != 0" class="btn btn-primary" type="submit">Save</button>&nbsp;
+                <button class=" btn btn-primary" (click)="activeModal.dismiss('Cross click')">Close</button>
+            </div>
+        </div>
+    </div>
+</form>

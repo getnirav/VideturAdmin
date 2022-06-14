@@ -1,0 +1,220 @@
+<form [formGroup]="vForm" (ngSubmit)="SaveData()">
+    <div class="card m-1">
+        <div class="card-header">
+            <h3 class="text-center">Notification Master</h3>
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label class="form-label">Event Code</label>
+                        <input type="text" class="form-control" id="eventCode" formControlName="eventCode">
+                        <div *ngIf="f.eventCode.touched && f.eventCode.invalid" class="alert alert-danger">
+                            <div *ngIf="f.eventCode.errors">Please enter event code.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label class="form-label">Notification Type</label>
+                        <select class="form-select" formControlName="notificationType">
+                            <option disabled>Select Notification Type</option>
+                            <option [ngValue]="type.code" *ngFor="let type of NotificationTypes">{{type.text}}</option>
+                        </select>
+                        <div *ngIf="f.notificationType.touched && f.notificationType.invalid && submitted"
+                            class="alert alert-danger">
+                            <div *ngIf="f.notificationType.errors">Please select notification type.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label class="form-label">Tone</label>
+                        <select class="form-select" formControlName="tone">
+                            <option disabled>Select Tone</option>
+                            <option [ngValue]="type.code" *ngFor="let type of Tones">{{type.text}}</option>
+                        </select>
+                        <div *ngIf="f.tone.touched && f.tone.invalid && submitted" class="alert alert-danger">
+                            <div *ngIf="f.tone.errors">Please select tone.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <h3 class="card-header">App Notification</h3>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label class="form-label">App Frequency</label>
+                                        <input type="number" class="form-control" id="appFrequency"
+                                            formControlName="appFrequency">
+                                        <div *ngIf="f.appFrequency.touched && f.appFrequency.invalid"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.appFrequency.errors">Please enter app frequency.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label class="form-label">App Frequency Interval</label>
+                                        <input type="text" class="form-control" id="appFrequencyInterval"
+                                            formControlName="appFrequencyInterval">
+                                        <div *ngIf="f.appFrequencyInterval.touched && f.appFrequencyInterval.invalid"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.appFrequencyInterval.errors">Please enter app frequency
+                                                interval.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">App Content</label>
+                                <input type="text" class="form-control" id="appContent" formControlName="appContent">
+                                <div *ngIf="f.appContent.touched && f.appContent.invalid" class="alert alert-danger">
+                                    <div *ngIf="f.appContent.errors">Please enter app content.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                  <div class="card">
+                    <h5 class="card-header">SMTP Server Details</h5>
+                    <div class="card-body">
+                        <div class="row">
+                          <div class="col-6">
+                              <div class=" form-group">
+                                  <label class="form-label">Smtp Server</label>
+                                  <input type="text" class="form-control" id="smtpServer" formControlName="smtpServer">
+                                  <div *ngIf="f.smtpServer.touched && f.smtpServer.invalid" class="alert alert-danger">
+                                      <div *ngIf="f.smtpServer.errors">Please enter smtp server.</div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-6">
+                              <div class=" form-group">
+                                  <label class="form-label">Smtp From Name</label>
+                                  <input type="text" class="form-control" id="smtpFromName"
+                                      formControlName="smtpFromName">
+                                  <div *ngIf="f.smtpFromName.touched && f.smtpFromName.invalid"
+                                      class="alert alert-danger">
+                                      <div *ngIf="f.smtpFromName.errors">Please enter smtp from name.</div>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                              <div class=" form-group">
+                                  <label class="form-label">Smtp Port</label>
+                                  <input type="text" class="form-control" id="smtpPort" formControlName="smtpPort">
+                                  <div *ngIf="f.smtpPort.touched && f.smtpPort.invalid" class="alert alert-danger">
+                                      <div *ngIf="f.smtpPort.errors">Please enter smtp port.</div>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <div class=" form-group">
+                                <label class="form-label">Smtp Ssl</label>
+                                <select class="form-select" formControlName="smtpSsl">
+                                    <option disabled>Select Smtp Ssl</option>
+                                    <option [ngValue]="type.code" *ngFor="let type of smtpSsl">{{type.text}}</option>
+                                </select>
+                                <div *ngIf="f.smtpSsl.touched && f.smtpSsl.invalid && submitted"
+                                    class="alert alert-danger">
+                                    <div *ngIf="f.smtpSsl.errors">Please select smtp ssl.</div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <div class=" form-group">
+                                <label class="form-label">Smtp Email</label>
+                                <input type="text" class="form-control" id="smtpEmail" formControlName="smtpEmail">
+                                <div *ngIf="f.smtpEmail.touched && f.smtpEmail.invalid" class="alert alert-danger">
+                                    <div *ngIf="f.smtpEmail.errors">Please enter smtp email.</div>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class=" form-group">
+                              <label class="form-label">Smtp Password</label>
+                              <input type="password" class="form-control" id="smtpPassword" formControlName="smtpPassword">
+                              <div *ngIf="f.smtpPassword.touched && f.smtpPassword.invalid" class="alert alert-danger">
+                                  <div *ngIf="f.smtpPassword.errors">Please enter smtp password.</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="card">
+              <h3 class="card-header">Email Notification</h3>
+              <div class="card-body">
+                  <div class="row">
+                      <div class="col-6">
+                          <div class="form-group">
+                              <label class="form-label">Email Frequency</label>
+                              <input type="text" class="form-control" id="emailFrequency"
+                                  formControlName="emailFrequency">
+                              <div *ngIf="f.emailFrequency.touched && f.emailFrequency.invalid"
+                                  class="alert alert-danger">
+                                  <div *ngIf="f.emailFrequency.errors">Please enter email frequency.</div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-6">
+                          <div class=" form-group">
+                              <label class="form-label">Email Frequency Interval</label>
+                              <input type="text" class="form-control" id="emailFrequencyInterval"
+                                  formControlName="emailFrequencyInterval">
+                              <div *ngIf="f.emailFrequencyInterval.touched && f.emailFrequencyInterval.invalid"
+                                  class="alert alert-danger">
+                                  <div *ngIf="f.emailFrequencyInterval.errors">Please enter email frequency
+                                      interval.
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class=" form-group">
+                      <label class="form-label">Email Subject</label>
+                      <input type="text" class="form-control" id="emailSubject"
+                          formControlName="emailSubject">
+                      <div *ngIf="f.emailSubject.touched && f.emailSubject.invalid"
+                          class="alert alert-danger">
+                          <div *ngIf="f.emailSubject.errors">Please enter email subject.</div>
+                      </div>
+                  </div>
+                  <div class=" form-group">
+                      <label class="form-label">Email Content</label>
+                      <!-- <input type="text" class="form-control" id="emailContent"
+                          formControlName="emailContent"> -->
+                      <ckeditor [editor]="Editor" formControlName="emailContent" >
+                      </ckeditor>
+                      <div *ngIf="f.emailContent.touched && f.emailContent.invalid"
+                          class="alert alert-danger">
+                          <div *ngIf="f.emailContent.errors">Please enter email content.</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" [disabled]="!vForm.valid">Save</button>&nbsp;
+                <button class=" btn btn-primary" (click)="activeModal.dismiss('Cross click')">Close</button>
+            </div>
+        </div>
+    </div>
+</form>

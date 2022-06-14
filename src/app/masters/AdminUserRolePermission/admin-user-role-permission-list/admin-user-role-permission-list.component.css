@@ -1,0 +1,45 @@
+.mat-table {
+    border: solid 1px rgba(0, 0, 0, .12);
+}
+
+.mat-row,
+.mat-header-row {
+    height: auto;
+}
+
+td.mat-cell {
+    border: solid 1px rgba(0, 0, 0, .12);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    vertical-align: middle;
+}
+
+th.mat-header-cell {
+    border: solid 1px rgba(0, 0, 0, .12);
+    padding: 0.5rem 0.5rem;
+    font-size: unset;
+    font-weight: 600;
+    color: unset;
+    vertical-align: middle;
+}
+
+.mat-header {
+    height: 25px;
+}
+
+.mat-column-select {
+    width: 2%;
+    text-align: center;
+    padding: unset;
+}
+
+.mat-column-action {
+    width: 12%;
+    text-align: center;
+    padding: unset;
+}
+
+.mat-paginator,
+.mat-paginator-page-size .mat-select-trigger {
+    font-size: 1rem;
+}

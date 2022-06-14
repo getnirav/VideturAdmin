@@ -1,0 +1,59 @@
+<form [formGroup]="vForm" (ngSubmit)="SaveData()">
+    <div class="card m-1">
+        <div class="card-header">
+            <h3 class="text-center">User Role Permission Master</h3>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label class="form-label">Role Name</label>
+                <select class="form-select" formControlName="adminUserRoleName">
+                    <option disabled>Select Module</option>
+                    <option [ngValue]="module.adminUserRoleName" *ngFor="let module of adminUserRole">
+                        {{module.adminUserRoleName}}</option>
+                </select>
+                <div *ngIf="f.adminUserRoleName.touched && f.adminUserRoleName.invalid && submitted"
+                    class="alert alert-danger">
+                    <div *ngIf="f.adminUserRoleName.errors">Please select role.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Module Name</label>
+                <select class="form-select" formControlName="moduleMasterId">
+                    <option disabled>Select Module</option>
+                    <option [ngValue]="module.autoId" *ngFor="let module of moduleMaster">{{module.moduleName}}</option>
+                </select>
+                <div *ngIf="f.moduleMasterId.touched && f.moduleMasterId.invalid && submitted"
+                    class="alert alert-danger">
+                    <div *ngIf="f.moduleMasterId.errors">Please select module.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Action Name</label>
+                <select class="form-select" formControlName="moduleActionId">
+                    <option disabled>Select Module</option>
+                    <option [ngValue]="module.autoId" *ngFor="let module of moduleAction">{{module.actionName}}</option>
+                </select>
+                <div *ngIf="f.moduleActionId.touched && f.moduleActionId.invalid && submitted"
+                    class="alert alert-danger">
+                    <div *ngIf="f.moduleActionId.errors">Please select action.</div>
+                </div>
+            </div>
+            <div class=" form-group">
+                <label class="form-label">Permission</label> &nbsp;&nbsp;
+                <!-- <input type="checkbox" class="form-check-input" id="permission" formControlName="permission"> -->
+
+                <input type="radio" class="btn-check" name="permission" id="success-outlined" autocomplete="off"
+                    [checked]="checkAllowed" (click)="ChangeAction('Allow')">
+                <label class="btn btn-outline-success" for="success-outlined">Allow</label>
+                &nbsp;
+                <input type="radio" class="btn-check" name="permission" id="danger-outlined" autocomplete="off"
+                    [checked]="!checkAllowed" (click)="ChangeAction('Deny')">
+                <label class="btn btn-outline-danger" for="danger-outlined">Deny</label>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" [disabled]="!vForm.valid">Save</button>&nbsp;
+                <button class=" btn btn-primary" (click)="activeModal.dismiss('Cross click')">Close</button>
+            </div>
+        </div>
+    </div>
+</form>

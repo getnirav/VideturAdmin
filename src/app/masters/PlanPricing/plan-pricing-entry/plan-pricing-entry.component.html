@@ -1,0 +1,40 @@
+<form [formGroup]="vForm" (ngSubmit)="SaveData()">
+    <div class="card m-1">
+        <div class="card-header">
+            <h3 class="text-center">Plan Pricing</h3>
+        </div>
+
+        <div class="card-body">
+            <div class="form-group">
+                <label class="form-label">Plan Name</label>
+                <input type="text" class="form-control" id="planName" formControlName="planName">
+                <div *ngIf="f.planName.touched && f.planName.invalid" class="alert alert-danger">
+                    <div *ngIf="f.planName.errors">Please enter Plan name.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Plan Percent</label>
+                <input type="text" class="form-control" id="planPercent" formControlName="planPercent">
+                <div *ngIf="f.planPercent.touched && f.planPercent.invalid" class="alert alert-danger">
+                    <div *ngIf="f.planPercent.errors">Please enter Plan percent.</div>
+                </div>
+            </div>
+            <div class=" form-group">
+                <label class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" formControlName="description">
+            </div>
+            <div class=" form-group">
+                <label class="form-label">Sort Order</label>
+                <input type="number" class="form-control" id="sortOrder" formControlName="sortOrder">
+            </div>
+            <div class=" form-group">
+                <label class="form-label">Default Plan</label> &nbsp;&nbsp;
+                <input type="checkbox" id="defaultPlan" formControlName="defaultPlan">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" [disabled]="!vForm.valid">Save</button>&nbsp;
+                <button class=" btn btn-primary" (click)="activeModal.dismiss('Cross click')">Close</button>
+            </div>
+        </div>
+    </div>
+</form>

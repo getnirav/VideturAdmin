@@ -1,0 +1,30 @@
+<form [formGroup]="vForm" (ngSubmit)="SaveData()">
+    <div class="card m-1">
+        <div class="card-header">
+            <h3 class="text-center">User Profile</h3>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstName" formControlName="firstName">
+                <div *ngIf="f.firstName.touched && f.firstName.invalid" class="alert alert-danger">
+                    <div *ngIf="f.firstName.errors">Please enter first name.</div>
+                </div>
+
+
+            </div>
+            <div class=" form-group">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" formControlName="lastName">
+                <div *ngIf="f.lastName.touched && f.lastName.invalid" class="alert alert-danger">
+                    <div *ngIf="f.lastName.errors">Please enter last name.</div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" [disabled]="!vForm.valid">Save</button>&nbsp;
+                <button class=" btn btn-primary" (click)="activeModal.dismiss('Cross click')">Close</button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,32 @@
+<form [formGroup]="vForm" (ngSubmit)="SaveData()">
+  <div class="card m-1">
+    <div class="card-header">
+      <h3 class="text-center">County Master</h3>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label class="form-label">State Code</label>
+        <select class="form-select" formControlName="stateMasterId">
+          <option disabled>Select State</option>
+          <option [ngValue]="state.autoId" *ngFor="let state of states">{{state.stateName}}</option>
+        </select>
+        <div *ngIf="f.stateMasterId.touched && f.stateMasterId.invalid && submitted" class="alert alert-danger">
+          <div *ngIf="f.stateMasterId.errors">Please select state.</div>
+        </div>
+      </div>
+      <div class=" form-group">
+        <label class="form-label">County Name</label>
+        <input type="text" class="form-control" id="countyName" formControlName="countyName">
+
+        <div *ngIf="f.countyName.touched && f.countyName.invalid" class="alert alert-danger">
+          <div *ngIf="f.countyName.errors">Please enter county name.</div>
+        </div>
+
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit" [disabled]="!vForm.valid">Save</button>&nbsp;
+        <button class=" btn btn-primary" (click)="activeModal.dismiss('Cross click')">Close</button>
+      </div>
+    </div>
+  </div>
+</form>
