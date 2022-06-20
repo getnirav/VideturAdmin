@@ -17,25 +17,29 @@ export class AuthService {
   clearTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {
-    this.user = new BehaviorSubject<UserModel>(JSON.parse(sessionStorage.getItem('currentUser') || '{}'));
+    this.user = new BehaviorSubject<UserModel>(JSON.parse(localStorage.getItem('currentUser') || '{}'));
     this.currentUser = this.user.asObservable();
   }
 
   authUser(user: Login): Observable<LoginResponse> {
     return this.http.post<any>(this.apiPath + 'User/AdminLogin', user).pipe(map(user => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
-      if (user.model != null) {
-        this.refreshUser(user.model);
-      }
-      let date = new Date();
-      date.setDate(date.getDate() + 7);
-      this.autoLogout(date.getTime());
+      // if (user.model != null) {
+      //   this.refreshUser(user.model);
+      // }
+      // let date = new Date();
+      // date.setDate(date.getDate() + 7);
+      // this.autoLogout(date.getTime());
+      // store user details and jwt token in local storage to keep user logged in between page refreshes
+      localStorage.setItem('currentUser', JSON.stringify(user.model));
+      //this.isSubUser = user.model?.parentUserId != null ? true : false;
+      this.user.next(user.model);
       return user;
     }));
   }
   refreshUser(model: UserModel) {
-    sessionStorage.removeItem('currentUser');
-    sessionStorage.setItem('currentUser', JSON.stringify(model));
+    localStorage.removeItem('currentUser');
+    localStorage.setItem('currentUser', JSON.stringify(model));
     this.user.next(model);
   }
   autoLogout(timeout: any) {
@@ -48,8 +52,8 @@ export class AuthService {
     if (this.clearTimer)
       clearTimeout(this.clearTimer);
     // remove user from local storage and set current user to null
-    sessionStorage.removeItem('currentUser');
-    sessionStorage.clear();
+    localStorage.removeItem('currentUser');
+    localStorage.clear();
     this.user.next({});
     this.router.navigateByUrl("/login");
   }
@@ -61,10 +65,10 @@ export class AuthService {
     this.user.next(model);
   }
   gettoken() {
-    return !!sessionStorage.getItem("currentUser");
+    return !!localStorage.getItem("currentUser");
   }
   getAuthtoken() {
-    const user = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
+    const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
     if (user?.token != null) {
       return user.token;
     }
@@ -72,7 +76,7 @@ export class AuthService {
 
   public isLoggedIn(): boolean {
     let status = false;
-    const user = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
+    const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
     if (user?.token != null) {
       status = true;
     }
